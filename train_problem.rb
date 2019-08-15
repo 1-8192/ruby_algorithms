@@ -37,10 +37,16 @@
 #     Output #10: 7
 #      ==========
 
-class Train_route(graph = [])
-    
-    def initialize (graph:)
+class Train_route
+    attr_reader :graph 
+
+    def initialize (graph = [])
         @graph = graph
     end
 
 end
+
+test = Train_route.new([{'AB' => 5}, {'BC' => 4}, {'CD' => 8}, {'DC' => 8}, {'DE' => 6}, {'AD' => 5}, {'CE' => 2}, {'EB' => 3}, {'AE' => 7}])
+
+print test.graph
+print test.graph[5]
