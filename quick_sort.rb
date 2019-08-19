@@ -29,8 +29,8 @@ def partition(array, left, right)
     return pivot_index
 end
 
-array = [4, 5, 1, 19, 3, 2, 2, 58, 7]
-print quick_sort(array, 0, 8)
+# array = [4, 5, 1, 19, 3, 2, 2, 58, 7]
+# print quick_sort(array, 0, 8)
 
-array = [3]
-print quick_sort(array, 0, 0)
+# array = [3]
+# print quick_sort(array, 0, 0)

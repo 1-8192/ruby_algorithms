@@ -1,3 +1,6 @@
+# Heap sort 
+# Time complexity = O(n log n) 
+
 def heap_sort(array)  
     size = array.length
     #Adding an empty element at beginning of array to be the root
@@ -32,5 +35,6 @@ def heap_sort(array)
     a[parent] = root 
   end  
 
-arr = [5, 9, 2, 2, 1, 5, 18, 7, 58, 32]
-print heap_sort(arr)
+# test
+# arr = [5, 9, 2, 2, 1, 5, 18, 7, 58, 32]
+# print heap_sort(arr)

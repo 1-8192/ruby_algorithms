@@ -17,5 +17,5 @@ def selection_sort(array)
 end 
 
 #testing it out
-array = [1,5,3,4,2,2,10,50,3002,2,7,4,9]
-print selection_sort(array)
+# array = [1,5,3,4,2,2,10,50,3002,2,7,4,9]
+# print selection_sort(array)

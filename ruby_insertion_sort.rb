@@ -21,5 +21,5 @@ def insertion_sort(array)
 end
 
 # Testing it out
-array = [3,5,1,7,4,2,8,2,19,3005,4,3,2]
-print insertion_sort(array)
+# array = [3,5,1,7,4,2,8,2,19,3005,4,3,2]
+# print insertion_sort(array)

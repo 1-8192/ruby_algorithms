@@ -1,3 +1,6 @@
+# Bucket sort is ideal for data that is evenly distributed in a range 
+# Average time complexity O(n + n^2/k + k)
+
 #Insertion sort we'll use on the individual buckets
 def insertion_sort(array)
     i=0
@@ -63,5 +66,5 @@ def bucket_sort(array, bucket_size = 5)
 end
 
 #Making sure we're on the right track
-array = [58, 52, 56, 12, 14, 11, 22, 23, 27]
-print bucket_sort(array, 3)
+# array = [58, 52, 56, 12, 14, 11, 22, 23, 27]
+# print bucket_sort(array, 3)
