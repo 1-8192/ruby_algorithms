@@ -11,12 +11,38 @@ def number_to_word_converter(number)
         "seven",
         "eight",
         "nine",
-        "ten"
+        "ten",
+        "eleven",
+        "twelve",
+        "thirteen",
+        "fourteen",
+        "fifteen",
+        "sixteen",
+        "seventeen",
+        "eighteen",
+        "nineteen"
     ]
 
-    single_digits[number - 1 ]
+    tens_digits = [
+        "twenty",
+        "thirty",
+        "forty",
+        "fifty",
+        "sixty",
+        "seventy",
+        "eighty",
+        "ninety"
+    ]
+
+    if number < 20
+        single_digits[number - 1 ]
+    else   
+        # tens_digits[number[0] - 2] + " " + single_digits[number[1] - 1]
+    end
 end
 
 p number_to_word_converter(4)
 p number_to_word_converter(10)
 p number_to_word_converter(1)
+p number_to_word_converter(16)
+p number_to_word_converter(19)
