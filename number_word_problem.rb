@@ -37,7 +37,8 @@ def number_to_word_converter(number)
     if number < 20
         single_digits[number - 1 ]
     else   
-        # tens_digits[number[0] - 2] + " " + single_digits[number[1] - 1]
+        test = number.to_s
+        tens_digits[test[0].to_i - 2] + " " + single_digits[test[1].to_i - 1]
     end
 end
 
@@ -46,3 +47,6 @@ p number_to_word_converter(10)
 p number_to_word_converter(1)
 p number_to_word_converter(16)
 p number_to_word_converter(19)
+p number_to_word_converter(25)
+p number_to_word_converter(99)
+p number_to_word_converter(78)
