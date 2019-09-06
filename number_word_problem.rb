@@ -36,9 +36,12 @@ def number_to_word_converter(number)
 
     if number < 20
         single_digits[number - 1 ]
-    else   
+    elsif number < 100 
         test = number.to_s
         tens_digits[test[0].to_i - 2] + " " + single_digits[test[1].to_i - 1]
+    else  
+        test = number.to_s 
+        single_digits[test[0].to_i - 1] + " hundred " 
     end
 end
 
