@@ -125,15 +125,6 @@ def number_to_word_converter(number)
     else  
         0
     end
-#    if number < 1000 
-#      return number_to_word_less_than_thousand(number)
-#    elsif number < 10000
-#      number_to_word_less_than_ten_thousand(number)
-#    elsif number < 100000
-#     number_to_word_less_than_hundred_thousand(number)
-#    elsif number < 1000000
-#     number_to_word_less_than_million(number)
-#    end 
 end
 
 # Test suite
@@ -157,5 +148,5 @@ end
 # p number_to_word_converter(345900)
 # p number_to_word_converter(999999)
 # p number_to_word_converter(12457865)
-p number_to_word_converter(124578965)
-p number_to_word_converter(0)
+# p number_to_word_converter(124578965)
+# p number_to_word_converter(0)
