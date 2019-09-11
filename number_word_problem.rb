@@ -33,27 +33,33 @@
     "ninety"
 ]
 
-def number_to_word_less_than_thousand(number)
-    if number < 20
+def number_to_word_less_than_hundred(number)
+    if number < 20 
         @single_digits[number - 1]
-    elsif number < 100 
-        test = number.to_s
-        @tens_digits[test[0].to_i - 2] + " " + @single_digits[test[1].to_i - 1]
-    else 
+    else      
+        test = number.to_s 
+        if test[1] == "0" 
+            @tens_digits[test[0].to_i - 2]
+        else 
+            @tens_digits[test[0].to_i - 2] + " " + @single_digits[test[1].to_i - 1]
+        end 
+    end 
+end
+
+def number_to_word_less_than_thousand(number)
         test = number.to_s 
         if test[1] == 0 
             @single_digits[test[0].to_i - 1] + " hundred " + @single_digits[test[2].to_i]
         else  
             @single_digits[test[0].to_i - 1] + " hundred " + @tens_digits[test[1].to_i - 2] + " " + @single_digits[test[2].to_i - 1]
         end 
-    end
 end 
 
 def number_to_word_less_than_ten_thousand(number)
     test = number.to_s.split('') 
      thousand = test.shift  
 
-     @single_digits[thousand.to_i - 1] + " thousand " + number_to_word_converter(test.join('').to_i)
+     @single_digits[thousand.to_i - 1] + " thousand " + number_to_word_less_than_thousand(test.join('').to_i)
 end 
 
 def number_to_word_less_than_hundred_thousand(number)
@@ -108,6 +114,8 @@ end
 
 def number_to_word_converter(number)
     case number 
+    when 1..100
+        number_to_word_less_than_hundred(number)
     when 1..1000
         number_to_word_less_than_thousand(number)
     when 1001..10000
@@ -129,24 +137,5 @@ end
 
 # Test suite
 
-# p number_to_word_converter(4)
-# p number_to_word_converter(10)
-# p number_to_word_converter(1)
-# p number_to_word_converter(16)
-# p number_to_word_converter(19)
-# p number_to_word_converter(25)
-# p number_to_word_converter(99)
-# p number_to_word_converter(78)
-# p number_to_word_converter(109)
-# p number_to_word_converter(534)
-# p number_to_word_converter(999)
-# p number_to_word_converter(1007)
-# p number_to_word_converter(1345)
-# p number_to_word_converter(9999)
-#  p number_to_word_converter(23896)
-#  p number_to_word_converter(99999)
-# p number_to_word_converter(345900)
-# p number_to_word_converter(999999)
-# p number_to_word_converter(12457865)
-# p number_to_word_converter(124578965)
-# p number_to_word_converter(0)
+p number_to_word_converter(100)
+p number_to_word_converter(1000)
