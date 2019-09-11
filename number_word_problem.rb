@@ -68,6 +68,13 @@ def number_to_word_less_than_hundred_thousand(number)
     
 end 
 
+def number_to_word_less_than_million(number)
+    test = number.to_s.split('')
+    hundred_k = test.shift 
+
+    @single_digits[hundred_k.to_i - 1] + ' hundred ' + number_to_word_less_than_hundred_thousand(test.join('').to_i)
+end 
+
 def number_to_word_converter(number)
    if number < 1000 
      return number_to_word_less_than_thousand(number)
@@ -75,6 +82,8 @@ def number_to_word_converter(number)
      number_to_word_less_than_ten_thousand(number)
    elsif number < 100000
     number_to_word_less_than_hundred_thousand(number)
+   elsif number < 1000000
+    number_to_word_less_than_million(number)
    end 
 end
 
@@ -94,5 +103,7 @@ end
 # p number_to_word_converter(1007)
 # p number_to_word_converter(1345)
 # p number_to_word_converter(9999)
-p number_to_word_converter(23896)
-p number_to_word_converter(99999)
+# p number_to_word_converter(23896)
+# p number_to_word_converter(99999)
+p number_to_word_converter(345900)
+p number_to_word_converter(999999)
