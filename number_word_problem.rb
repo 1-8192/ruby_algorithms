@@ -59,11 +59,13 @@ end
 def number_to_word_less_than_hundred_thousand(number)
     test = number.to_s.split('')
     ten_thousand = test.slice(0,2).join('').to_i 
+    test.shift 
+    test.shift
     
     if ten_thousand < 20
         @single_digits[ten_thousand - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
     else 
-        @tens_digits[test[0].to_i - 2] + " " + @single_digits[test[1].to_i - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
+        @tens_digits[ten_thousand.to_s[0].to_i - 2] + " " + @single_digits[ten_thousand.to_s[1].to_i - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
     end 
     
 end 
@@ -75,16 +77,55 @@ def number_to_word_less_than_million(number)
     @single_digits[hundred_k.to_i - 1] + ' hundred ' + number_to_word_less_than_hundred_thousand(test.join('').to_i)
 end 
 
+def number_to_word_less_than_ten_million(number)
+    test = number.to_s.split('')
+    million = test.shift 
+
+    @single_digits[million.to_i - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+end
+
+def number_to_word_less_than_hundred_million(number)
+    test = number.to_s.split('')
+    ten_million = test.slice(0,2).join('').to_i 
+    test.shift 
+    test.shift 
+
+    if ten_million < 20 
+        @single_digits[ten_million - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+    else  
+        @tens_digits[ten_million.to_s[0].to_i - 2] + " " + @single_digits[ten_million.to_s[1].to_i -1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+    end
+end 
+
+def number_to_word_less_than_billion(number)
+end 
+
 def number_to_word_converter(number)
-   if number < 1000 
-     return number_to_word_less_than_thousand(number)
-   elsif number < 10000
-     number_to_word_less_than_ten_thousand(number)
-   elsif number < 100000
-    number_to_word_less_than_hundred_thousand(number)
-   elsif number < 1000000
-    number_to_word_less_than_million(number)
-   end 
+    case number 
+    when 1..1000
+        number_to_word_less_than_thousand(number)
+    when 1001..10000
+        number_to_word_less_than_ten_thousand(number)
+    when 10001..100000
+        number_to_word_less_than_hundred_thousand(number)
+    when 100001..1000000
+        number_to_word_less_than_million(number)
+    when 1000001..10000000
+        number_to_word_less_than_ten_million(number)
+    when 10000001..100000000
+        number_to_word_less_than_hundred_million(number)
+    else  
+        0
+    end
+#    if number < 1000 
+#      return number_to_word_less_than_thousand(number)
+#    elsif number < 10000
+#      number_to_word_less_than_ten_thousand(number)
+#    elsif number < 100000
+#     number_to_word_less_than_hundred_thousand(number)
+#    elsif number < 1000000
+#     number_to_word_less_than_million(number)
+#    end 
 end
 
 # Test suite
@@ -103,7 +144,8 @@ end
 # p number_to_word_converter(1007)
 # p number_to_word_converter(1345)
 # p number_to_word_converter(9999)
-# p number_to_word_converter(23896)
-# p number_to_word_converter(99999)
-p number_to_word_converter(345900)
-p number_to_word_converter(999999)
+ p number_to_word_converter(23896)
+ p number_to_word_converter(99999)
+# p number_to_word_converter(345900)
+# p number_to_word_converter(999999)
+p number_to_word_converter(12457865)
