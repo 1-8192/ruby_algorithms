@@ -1,51 +1,52 @@
 # 5. given a number N where 1 billion > N > 0 whole numbers only # output the number in words # ie: 384765 output three hundred eighty four thousand seven hundred sixty five
 
+@single_digits = [
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+    "eleven",
+    "twelve",
+    "thirteen",
+    "fourteen",
+    "fifteen",
+    "sixteen",
+    "seventeen",
+    "eighteen",
+    "nineteen"
+]
+
+@tens_digits = [
+    "twenty",
+    "thirty",
+    "forty",
+    "fifty",
+    "sixty",
+    "seventy",
+    "eighty",
+    "ninety"
+]
+
 def number_to_word_converter(number)
-    single_digits = [
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen"
-    ]
-
-    tens_digits = [
-        "twenty",
-        "thirty",
-        "forty",
-        "fifty",
-        "sixty",
-        "seventy",
-        "eighty",
-        "ninety"
-    ]
-
+   
     if number < 20
-        single_digits[number - 1 ]
+        @single_digits[number - 1 ]
     elsif number < 100 
         test = number.to_s
-        tens_digits[test[0].to_i - 2] + " " + single_digits[test[1].to_i - 1]
-    else  
+        @tens_digits[test[0].to_i - 2] + " " + @single_digits[test[1].to_i - 1]
+    else 
         test = number.to_s 
         if test[1] == 0 
-            single_digits[test[0].to_i - 1] + " hundred " + single_digits[test[2].to_i]
+            @single_digits[test[0].to_i - 1] + " hundred " + @single_digits[test[2].to_i]
         else  
-            single_digits[test[0].to_i - 1] + " hundred " + tens_digits[test[1].to_i - 2] + " " + single_digits[test[2].to_i - 1]
-        end
+            @single_digits[test[0].to_i - 1] + " hundred " + @tens_digits[test[1].to_i - 2] + " " + @single_digits[test[2].to_i - 1]
+        end 
     end
 end
 
