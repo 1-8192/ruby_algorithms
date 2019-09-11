@@ -49,14 +49,32 @@ def number_to_word_less_than_thousand(number)
     end
 end 
 
+def number_to_word_less_than_ten_thousand(number)
+    test = number.to_s.split('') 
+     thousand = test.shift  
+
+     @single_digits[thousand.to_i - 1] + " thousand " + number_to_word_converter(test.join('').to_i)
+end 
+
+def number_to_word_less_than_hundred_thousand(number)
+    test = number.to_s.split('')
+    ten_thousand = test.slice(0,2).join('').to_i 
+    
+    if ten_thousand < 20
+        @single_digits[ten_thousand - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
+    else 
+        @tens_digits[test[0].to_i - 2] + " " + @single_digits[test[1].to_i - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
+    end 
+    
+end 
+
 def number_to_word_converter(number)
    if number < 1000 
      return number_to_word_less_than_thousand(number)
    elsif number < 10000
-     test = number.to_s.split('') 
-     thousand = test.shift  
-
-     @single_digits[thousand.to_i - 1] + " thousand " + number_to_word_converter(test.join('').to_i)
+     number_to_word_less_than_ten_thousand(number)
+   elsif number < 100000
+    number_to_word_less_than_hundred_thousand(number)
    end 
 end
 
@@ -73,6 +91,8 @@ end
 # p number_to_word_converter(109)
 # p number_to_word_converter(534)
 # p number_to_word_converter(999)
-p number_to_word_converter(1007)
-p number_to_word_converter(1345)
-p number_to_word_converter(9999)
+# p number_to_word_converter(1007)
+# p number_to_word_converter(1345)
+# p number_to_word_converter(9999)
+p number_to_word_converter(23896)
+p number_to_word_converter(99999)
