@@ -93,11 +93,17 @@ def number_to_word_less_than_hundred_million(number)
     if ten_million < 20 
         @single_digits[ten_million - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
     else  
-        @tens_digits[ten_million.to_s[0].to_i - 2] + " " + @single_digits[ten_million.to_s[1].to_i -1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+        @tens_digits[ten_million.to_s[0].to_i - 2] + " " + @single_digits[ten_million.to_s[1].to_i - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
     end
 end 
 
 def number_to_word_less_than_billion(number)
+    test = number.to_s.split('')
+    hundred_m = test.shift 
+
+    p test.join('').to_i
+
+    @single_digits[hundred_m.to_i - 1] + " hundred " + number_to_word_less_than_hundred_million(test.join('').to_i)
 end 
 
 def number_to_word_converter(number)
@@ -114,6 +120,8 @@ def number_to_word_converter(number)
         number_to_word_less_than_ten_million(number)
     when 10000001..100000000
         number_to_word_less_than_hundred_million(number)
+    when 100000001..1000000000
+        number_to_word_less_than_billion(number)
     else  
         0
     end
@@ -144,8 +152,10 @@ end
 # p number_to_word_converter(1007)
 # p number_to_word_converter(1345)
 # p number_to_word_converter(9999)
- p number_to_word_converter(23896)
- p number_to_word_converter(99999)
+#  p number_to_word_converter(23896)
+#  p number_to_word_converter(99999)
 # p number_to_word_converter(345900)
 # p number_to_word_converter(999999)
-p number_to_word_converter(12457865)
+# p number_to_word_converter(12457865)
+p number_to_word_converter(124578965)
+p number_to_word_converter(0)
