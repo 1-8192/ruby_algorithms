@@ -33,8 +33,7 @@
     "ninety"
 ]
 
-def number_to_word_converter(number)
-   
+def number_to_word_less_than_thousand(number)
     if number < 20
         @single_digits[number - 1 ]
     elsif number < 100 
@@ -48,6 +47,15 @@ def number_to_word_converter(number)
             @single_digits[test[0].to_i - 1] + " hundred " + @tens_digits[test[1].to_i - 2] + " " + @single_digits[test[2].to_i - 1]
         end 
     end
+end 
+
+def number_to_word_converter(number)
+   if number < 1000 
+     return number_to_word_less_than_thousand(number)
+   elsif number < 10000
+     test = number.to_s 
+     @single_digits[test[0].to_i - 1] + " thousand " + number_to_word_less_than_thousand(test.split.unshift.join.to_i)
+   end 
 end
 
 p number_to_word_converter(4)
@@ -61,3 +69,4 @@ p number_to_word_converter(78)
 p number_to_word_converter(109)
 p number_to_word_converter(534)
 p number_to_word_converter(999)
+p number_to_word_converter(1007)
