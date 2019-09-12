@@ -1,36 +1,36 @@
 # 5. given a number N where 1 billion > N > 0 whole numbers only # output the number in words # ie: 384765 output three hundred eighty four thousand seven hundred sixty five
 
 @single_digits = [
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-    "eleven",
-    "twelve",
-    "thirteen",
-    "fourteen",
-    "fifteen",
-    "sixteen",
-    "seventeen",
-    "eighteen",
-    "nineteen"
+    "One",
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Eleven",
+    "Twelve",
+    "Thirteen",
+    "Fourteen",
+    "Fifteen",
+    "Sixteen",
+    "Seventeen",
+    "Eighteen",
+    "Nineteen"
 ]
 
 @tens_digits = [
-    "twenty",
-    "thirty",
-    "forty",
-    "fifty",
-    "sixty",
-    "seventy",
-    "eighty",
-    "ninety"
+    "Twenty",
+    "Thirty",
+    "Forty",
+    "Fifty",
+    "Sixty",
+    "Seventy",
+    "Eighty",
+    "Ninety"
 ]
 
 def number_to_word_less_than_hundred(number)
@@ -38,8 +38,12 @@ def number_to_word_less_than_hundred(number)
         @single_digits[number - 1]
     else      
         test = number.to_s 
-        if test[1] == "0" 
+        if number == 100
+            @single_digits[test[0].to_i - 1] + " Hundred"
+        elsif test[1] == "0" 
             @tens_digits[test[0].to_i - 2]
+        elsif test[1] == "0" && test[2] == "0"
+            @tens_digits[test[0].to_i - 2] + " Hundred"
         else 
             @tens_digits[test[0].to_i - 2] + " " + @single_digits[test[1].to_i - 1]
         end 
@@ -48,18 +52,24 @@ end
 
 def number_to_word_less_than_thousand(number)
         test = number.to_s 
-        if test[1] == 0 
-            @single_digits[test[0].to_i - 1] + " hundred " + @single_digits[test[2].to_i]
+        if number == 1000
+            @single_digits[test[0].to_i - 1] + " Thousand"
+        elsif test[1] == 0 
+            @single_digits[test[0].to_i - 1] + " Hundred " + @single_digits[test[2].to_i]
         else  
-            @single_digits[test[0].to_i - 1] + " hundred " + @tens_digits[test[1].to_i - 2] + " " + @single_digits[test[2].to_i - 1]
+            @single_digits[test[0].to_i - 1] + " Hundred " + @tens_digits[test[1].to_i - 2] + " " + @single_digits[test[2].to_i - 1]
         end 
 end 
 
 def number_to_word_less_than_ten_thousand(number)
     test = number.to_s.split('') 
      thousand = test.shift  
-
-     @single_digits[thousand.to_i - 1] + " thousand " + number_to_word_less_than_thousand(test.join('').to_i)
+    
+     if number == 10000
+        "Ten Thousand"
+     else
+        @single_digits[thousand.to_i - 1] + " Thousand " + number_to_word_less_than_thousand(test.join('').to_i)
+     end
 end 
 
 def number_to_word_less_than_hundred_thousand(number)
@@ -68,10 +78,12 @@ def number_to_word_less_than_hundred_thousand(number)
     test.shift 
     test.shift
     
-    if ten_thousand < 20
-        @single_digits[ten_thousand - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
+    if number == 100000
+        "One Hundred Thousand"
+    elsif ten_thousand < 20
+        @single_digits[ten_thousand - 1] + ' Thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
     else 
-        @tens_digits[ten_thousand.to_s[0].to_i - 2] + " " + @single_digits[ten_thousand.to_s[1].to_i - 1] + ' thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
+        @tens_digits[ten_thousand.to_s[0].to_i - 2] + " " + @single_digits[ten_thousand.to_s[1].to_i - 1] + ' Thousand ' + number_to_word_less_than_thousand(test.join('').to_i)
     end 
     
 end 
@@ -80,14 +92,22 @@ def number_to_word_less_than_million(number)
     test = number.to_s.split('')
     hundred_k = test.shift 
 
-    @single_digits[hundred_k.to_i - 1] + ' hundred ' + number_to_word_less_than_hundred_thousand(test.join('').to_i)
+    if number == 1000000
+        "One Million"
+    else 
+        @single_digits[hundred_k.to_i - 1] + ' Hundred ' + number_to_word_less_than_hundred_thousand(test.join('').to_i)
+    end
 end 
 
 def number_to_word_less_than_ten_million(number)
     test = number.to_s.split('')
     million = test.shift 
 
-    @single_digits[million.to_i - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+    if number == 10000000
+        "Ten Million"
+    else 
+        @single_digits[million.to_i - 1] + ' Million ' + number_to_word_less_than_million(test.join('').to_i)
+    end
 end
 
 def number_to_word_less_than_hundred_million(number)
@@ -96,10 +116,12 @@ def number_to_word_less_than_hundred_million(number)
     test.shift 
     test.shift 
 
-    if ten_million < 20 
-        @single_digits[ten_million - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+    if number == 100000000
+        "One Hundred Million"
+    elsif ten_million < 20 
+        @single_digits[ten_million - 1] + ' Million ' + number_to_word_less_than_million(test.join('').to_i)
     else  
-        @tens_digits[ten_million.to_s[0].to_i - 2] + " " + @single_digits[ten_million.to_s[1].to_i - 1] + ' million ' + number_to_word_less_than_million(test.join('').to_i)
+        @tens_digits[ten_million.to_s[0].to_i - 2] + " " + @single_digits[ten_million.to_s[1].to_i - 1] + ' Million ' + number_to_word_less_than_million(test.join('').to_i)
     end
 end 
 
@@ -109,14 +131,14 @@ def number_to_word_less_than_billion(number)
 
     p test.join('').to_i
 
-    @single_digits[hundred_m.to_i - 1] + " hundred " + number_to_word_less_than_hundred_million(test.join('').to_i)
+    @single_digits[hundred_m.to_i - 1] + " Hundred " + number_to_word_less_than_hundred_million(test.join('').to_i)
 end 
 
 def number_to_word_converter(number)
     case number 
     when 1..100
         number_to_word_less_than_hundred(number)
-    when 1..1000
+    when 101..1000
         number_to_word_less_than_thousand(number)
     when 1001..10000
         number_to_word_less_than_ten_thousand(number)
@@ -139,3 +161,8 @@ end
 
 p number_to_word_converter(100)
 p number_to_word_converter(1000)
+p number_to_word_converter(10000)
+p number_to_word_converter(100000)
+p number_to_word_converter(1000000)
+p number_to_word_converter(10670000)
+p number_to_word_converter(100000000)
