@@ -33,6 +33,14 @@
     "Ninety"
 ]
 
+def turn_integer_into_string(number)
+    number.to_s.split('')
+end
+
+def first_digit(string)
+    string.shift.to_i
+end
+
 def number_to_word_less_than_hundred(number)
     if number < 20 
         @single_digits[number - 1]
@@ -164,5 +172,7 @@ p number_to_word_converter(1000)
 p number_to_word_converter(10000)
 p number_to_word_converter(100000)
 p number_to_word_converter(1000000)
-p number_to_word_converter(10670000)
+p number_to_word_converter(10000000)
 p number_to_word_converter(100000000)
+x = turn_integer_into_string(456)
+p first_digit(x)
