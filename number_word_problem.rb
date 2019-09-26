@@ -39,10 +39,6 @@ def number_to_word_converter(num)
 
     final_word = ""
 
-    if num == 0
-        return number_name_hash[0]
-    end
-
     number_name_hash.each do |int, word| 
         if num == 0
             return final_word
@@ -65,8 +61,9 @@ p number_to_word_converter(0)
 p number_to_word_converter(7)
 p number_to_word_converter(24)
 p number_to_word_converter(30)
+p number_to_word_converter(768)
 p number_to_word_converter(3456725326)
 p number_to_word_converter(1000000)
 p number_to_word_converter(10000000)
-p number_to_word_converter(100000000)
+p number_to_word_converter(1000000000)
 
