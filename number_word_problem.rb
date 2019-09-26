@@ -211,8 +211,14 @@ def number_to_word_converter(num)
     number_name_hash.each do |int, word| 
         if num == 0
             return final_word
-        elsif num < 10 && num/int > 0 
+        elsif num < 10 && num/int != 0 
             return final_word + "#{word}"
+        elsif num < 100 && num/int != 0
+            if num % int == 0 
+                return final_word + "#{word}"
+            else 
+              return final_word + "#{word}" + " " + number_to_word_converter(num % int)  
+            end
         end
     end 
 end
@@ -220,8 +226,8 @@ end
 
 p number_to_word_converter(0)
 p number_to_word_converter(7)
-# p number_to_word_converter(10000)
-# p number_to_word_converter(100000)
+p number_to_word_converter(24)
+p number_to_word_converter(30)
 # p number_to_word_converter(1000000)
 # p number_to_word_converter(10000000)
 # p number_to_word_converter(100000000)
