@@ -33,7 +33,7 @@ def number_to_word_converter(num)
         4 => 'four',
         3 => 'three',
         2 => 'two',
-        1 => 'one',
+        1 => 'one'
     }
 
     final_word = ""
@@ -50,7 +50,7 @@ def number_to_word_converter(num)
               return final_word + "#{word}" + " " + number_to_word_converter(num % int)  
             end
         elsif num / int != 0 
-            return final_word + number_to_word_converter(num / int) + " "  + "#{word}" + " " + number_to_word_converter(num % int) 
+            return final_word + number_to_word_converter(num / int) + " "  + "#{word}" + " " + number_to_word_converter(num % int)
         end
     end 
 end
